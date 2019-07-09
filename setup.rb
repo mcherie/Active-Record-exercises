@@ -33,12 +33,17 @@ ActiveRecord::Schema.define do
     t.timestamps null: false
   end
   create_table :employees do |table|
+    # t.string :name, null: false --- this says create a string column called name, and it cannot be null
     table.references :store
     table.column :first_name, :string
     table.column :last_name, :string
     table.column :hourly_rate, :integer
-    table.timestamps null: false
+    # creates two data fields, one created_at and one updated_at
+    table.timestamps null: false 
   end
 end
 
 puts 'Setup DONE'
+
+
+# binding.pry
