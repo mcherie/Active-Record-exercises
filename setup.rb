@@ -23,8 +23,10 @@ puts 'CONNECTED'
 puts 'Setting up Database (recreating tables) ...'
 
 ActiveRecord::Schema.define do
+
   drop_table :stores if ActiveRecord::Base.connection.table_exists?(:stores)
   drop_table :employees if ActiveRecord::Base.connection.table_exists?(:employees)
+
   create_table :stores do |t|
     t.column :name, :string
     t.column :annual_revenue, :integer
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define do
     t.column :womens_apparel, :boolean
     t.timestamps null: false
   end
+
   create_table :employees do |table|
     # t.string :name, null: false --- this says create a string column called name, and it cannot be null
     table.references :store
@@ -41,6 +44,7 @@ ActiveRecord::Schema.define do
     # creates two data fields, one created_at and one updated_at
     table.timestamps null: false 
   end
+
 end
 
 puts 'Setup DONE'
